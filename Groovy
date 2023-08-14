@@ -1,0 +1,25 @@
+```groovy
+stage('Build') {
+    steps {
+        script {
+            sh 'mvn clean package'
+        }
+    }
+}
+```
+```groovy
+stage('Test') {
+    steps {
+        script {
+            sh 'mvn test'
+        }
+    }
+}
+```
+```groovy
+stage('Deploy') {
+    steps {
+        script {
+            sh 'aws s3 cp target/ronapp.jar s3://ron-jars/'
+
+ // Use REST API to deploy the KDA application
